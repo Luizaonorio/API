@@ -18,7 +18,7 @@ class PeopleController {
     const name = req.query.name;
     person.find({ name: { $regex: name }}, {}, (err, person) => {
         if (person.length == 0 || err) {
-            res.status(404).send({ message: "Person name not found" })
+            res.status(404).send({ message: "User name not found" })
         } else { res.status(200).send(person)}
     })
   }
@@ -29,7 +29,7 @@ class PeopleController {
       if (err) {
         res
           .status(404)
-          .send({ message: `${err.message} - Person id not found` })
+          .send({ message: `${err.message} - User id not found` })
       } else {
         const peopleStrip = { ...person['_doc'] }
         delete peopleStrip.password
@@ -44,7 +44,7 @@ class PeopleController {
       err
         ? res
             .status(500)
-            .send({ message: `Register Person Falied- ${err.message}` })
+            .send({ message: `Register User Falied- ${err.message}` })
         : res.status(201).send(people.toJSON())
     })
   }
@@ -53,9 +53,9 @@ class PeopleController {
     const id = req.params.id
     person.findByIdAndUpdate(id, { $set: req.body }, err => {
       if (!err) {
-        res.status(200).send({ message: 'Person updated successfully' })
+        res.status(200).send({ message: 'User updated successfully' })
       } else {
-        res.status(404).send({ message: `${err.message} - Person Not Found` })
+        res.status(404).send({ message: `${err.message} - User Not Found` })
       }
     })
   }
@@ -64,7 +64,7 @@ class PeopleController {
     const id = req.params.id
     person.findByIdAndRemove(id, err => {
       if (!err) {
-        res.status(204).send({ message: 'Person successfully deleted' })
+        res.status(204).send({ message: 'User successfully deleted' })
       } else {
         res.status(404)
       }
