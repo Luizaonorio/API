@@ -1,0 +1,22 @@
+{
+  "name": "project-back",
+  "version": "1.0.0",
+  "description": "Projeto Back-End com API REST",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "no": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Luiza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
