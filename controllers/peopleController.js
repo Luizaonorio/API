@@ -9,13 +9,10 @@ class PeopleController {
 
   static listPeopleByName = (req, res) => {
     const name = req.query.name;
-
     person.find({ name: { $regex: name }}, {}, (err, person) => {
-      if (err) {
-        res.status(404).send({ message: `${err.message} - Person name not found` })
-      } else {
-        res.status(200).send(person)
-      }
+        if (person.length == 0 || err) {
+            res.status(404).send({ message: "Person name not found" })
+        } else { res.status(200).send(person)}
     })
   }
 
