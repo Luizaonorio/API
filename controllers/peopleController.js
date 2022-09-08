@@ -7,6 +7,18 @@ class PeopleController {
     })
   }
 
+  static listPeopleByName = (req, res) => {
+    const name = req.query.name;
+
+    person.find({ name: { $regex: name }}, {}, (err, person) => {
+      if (err) {
+        res.status(404).send({ message: `${err.message} - Person name not found` })
+      } else {
+        res.status(200).send(person)
+      }
+    })
+  }
+
   static listPeopleById = (req, res) => {
     const id = req.params.id
     person.findById(id, (err, person) => {
@@ -14,22 +26,6 @@ class PeopleController {
         res
           .status(404)
           .send({ message: `${err.message} - Person id not found` })
-      } else {
-        const peopleStrip = { ...person['_doc'] }
-        delete peopleStrip.password
-        res.status(200).send(peopleStrip)
-      }
-    })
-  }
-
-  static listPeopleByName = (req, res) => {
-    const name = req.params.name
-
-    person.find({ name: { $regex: name } }, {}, (err, person) => {
-      if (err) {
-        res
-          .status(404)
-          .send({ message: `${err.message} - Person name not found` })
       } else {
         const peopleStrip = { ...person['_doc'] }
         delete peopleStrip.password
