@@ -7,7 +7,7 @@ const peopleSchema = new mongoose.Schema(
         cpf: { type: String, validate: /^[0-9]*$/, minLength: 11, maxLength: 11, required: true },
         birthDate: { type: String, required: true },
         email: { type: String, required: true},
-        password: { type: String, minLength: 6, required: true },
+        password: { type: String, select: false, minLength: 6, required: true },
         address: { type: String, required: true },
         number: { type: String, required: true },
         complement: { type: String, required: true },
