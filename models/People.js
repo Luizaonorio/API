@@ -6,7 +6,7 @@ const peopleSchema = new mongoose.Schema(
         name: { type: String, validate: /[A-zÀ-ú\s]+$/, required: true },
         cpf: { type: String, validate: /^[0-9]*$/, minLength: 11, maxLength: 11, required: true },
         birthDate: { type: String, required: true },
-        email: { type: String, required: true},
+        email: { type: String, validate: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/, required: true},
         password: { type: String, select: false, minLength: 6, required: true },
         address: { type: String, required: true },
         number: { type: String, required: true },

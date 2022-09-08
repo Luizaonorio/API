@@ -3,7 +3,14 @@ import person from '../models/People.js'
 class PeopleController {
   static listPeople = (req, res) => {
     person.find((err, person) => {
-      res.status(200).json(person)
+        const page = req.query.page;
+        const limit = req.query.limit;
+
+        const startI = ((page - 1) * limit);
+        const endI = (page * limit);
+        const resultPerson = person.slice(startI, endI);
+
+        res.status(200).json(resultPerson);
     })
   }
 
@@ -65,4 +72,4 @@ class PeopleController {
   }
 }
 
-export default PeopleController
+export default PeopleController;
